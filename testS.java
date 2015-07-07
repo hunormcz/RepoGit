@@ -1,5 +1,5 @@
 
-
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
@@ -7,19 +7,33 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-public class testS {
-	public static void main (String args[]){
+
+public class testS 
+{
+	public static void main (String args[])
+	{
 		
-		FirefoxDriver dr1 = new FirefoxDriver();
+		FirefoxDriver driver = new FirefoxDriver();
 		//FirefoxDriver dr2 = new FirefoxDriver();
-dr1.get("http://yahoo.com");
+		
+driver.manage().window().maximize();
+		
 
-dr1.until(ExpectedConditions.presenceOfElementLocated(By.id("yui_3_12_0_1_1436197562703_704")));
+driver.get("http://facebook.com");
 
-//dr1.until(ExpectedConditions.elementToBeClickable(By.id("yui_3_12_0_1_1436197562703_704")));
-dr1.findElement(By.id("yui_3_12_0_1_1436197562703_704")).click();
 
-System.out.println();
-System.out.println();
-}
+//Log in to facebook
+Credentials credent = new Credentials();
+
+WebElement element = driver.findElement(By.id("email"));
+element.sendKeys(credent.name);
+element = driver.findElement(By.id("pass"));
+element.sendKeys(credent.pass);
+driver.findElement(By.id("loginbutton")).click();
+
+driver.findElement(By.id("userNavigationLabel")).click();
+driver.findElement(By.className("_54nh")).click();
+ //_54nh
+	}
+
 }
